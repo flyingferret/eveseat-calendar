@@ -2,7 +2,7 @@
 
 return [
     'calendar' => [
-        'name'          => 'calendar',
+        'name'          => 'Fleep Ops',
         'label'         => 'calendar::seat.plugin_name',
         'icon'          => 'fa-calendar',
         'route_segment' => 'calendar',
@@ -13,6 +13,12 @@ return [
                 'icon'  => 'fa-space-shuttle',
                 'route' => 'operation.index',
                 'permission' => 'calendar.view'
+            ],
+            [
+                'name'  => 'Timer Board',
+                'icon'  => 'fa-space-shuttle',
+                'route' => 'operation.index',
+                'permission' => 'calendar.create'
             ],
             [
                 'name'  => 'Settings',
