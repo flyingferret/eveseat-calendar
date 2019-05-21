@@ -3,7 +3,7 @@
 return [
     'calendar' => [
         'name'          => 'Fleep Ops',
-        'label'         => 'calendar::seat.plugin_name',
+        'label'         => 'Fleet Ops',
         'icon'          => 'fa-calendar',
         'route_segment' => 'calendar',
         'permission' => 'calendar.view',
