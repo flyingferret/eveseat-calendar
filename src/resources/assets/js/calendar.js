@@ -268,3 +268,35 @@ $('input[name="staging_sys"]').focusout(function() {
     if ($('input[name="staging_sys_id"]').val() == '')
         $('input[name="staging_sys"]').val(null);
 });
+
+$('#create_timer_submit').click(function(){
+    $('#formAddTimer').submit();
+});
+
+$('#formAddTimer').submit(function(e) {
+    e.preventDefault();
+
+    $('#create_timer_submit').prop('disabled', true);
+
+    $.ajax({
+        type: "POST",
+        url: "timers/add",
+        data: $(this).serializeArray(),
+        headers: {
+            'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+            $(location).attr('href', 'timers');
+        },
+        error: function (response) {
+            $('#modalAddTimer').find('.form-group').removeClass('has-error');
+            $('#modalAddTimer').find('.modal-errors ul').empty();
+            $('#modalAddTimer').find('.modal-errors').removeClass('hidden');
+            $.each(response['responseJSON'].errors, function (index, value) {
+                $('#modalAddTimer').find('[name="' + index + '"]').closest('div.form-group').addClass('has-error');
+                $('#modalAddTimer').find('.modal-errors ul').append('<li>' + value + '</li>');
+            });
+            $('#create_timer_submit').prop('disabled', false);
+        }
+    });
+});

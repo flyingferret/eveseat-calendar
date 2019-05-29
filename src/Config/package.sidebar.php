@@ -16,8 +16,8 @@ return [
             ],
             [
                 'name'  => 'Timer Board',
-                'icon'  => 'fa-space-shuttle',
-                'route' => 'operation.index',
+                'icon'  => 'fa-clock-o',
+                'route' => 'timers.index',
                 'permission' => 'calendar.create'
             ],
             [

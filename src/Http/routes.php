@@ -189,5 +189,46 @@ Route::group([
 
     });
 
+    Route::group([
+        'prefix' => 'timers'
+    ], function(){
+
+        Route::get('/', [
+            'as' => 'timers.index',
+            'uses' => 'TimerController@listAllTimersView'
+        ]);
+
+        Route::post('/add', [
+            'as' => 'timers.add',
+            'uses' => 'TimerController@addTimerAction',
+        ]);
+
+        Route::get('/details/{id}', [
+            'as' => 'timers.details',
+            'uses' => 'TimerController@listAllTimersView',
+        ]);
+
+        Route::get('/delete/{id}', [
+            'as' => 'timers.delete_timer',
+            'uses' => 'TimerController@listAllTimersView',
+        ]);
+
+        Route::get('/win-timer/{id}', [
+            'as' => 'timers.win_timer',
+            'uses' => 'TimerController@listAllTimersView',
+        ]);
+
+        Route::get('/fail-timer/{id}', [
+            'as' => 'timers.fail_timer',
+            'uses' => 'TimerController@listAllTimersView',
+        ]);
+
+        Route::get('/search-map', [
+            'as' => 'timers.search_map',
+            'uses' => 'TimerController@searchCelestialAction',
+        ]);
+
+    });
+
 
 });
