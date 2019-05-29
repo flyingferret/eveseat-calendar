@@ -3,11 +3,11 @@
         <th>Name</th>
         <th>Structure</th>
         <th>Type</th>
-        <th>Timer</th>
+        <th>Days | Hours | Minutes | Seconds</th>
         <th>EVE Time</th>
         <th>Win/Loss</th>
         <th>User</th>
-        <th>Actions</th>
+        <th></th>
     </thead>
     <tbody>
     @foreach($timers as $id => $timer)
@@ -22,7 +22,7 @@
         $minutes = $nowDate->diffInMinutes($timerDate, false);
 
         $class = '';
-        $style = 'font-size: 1.2em;';
+        $style = 'font-size: 1.1em;';
         if($timer->timerType === '0') {
             $class = 'success';
         }
@@ -87,7 +87,7 @@
                 <label class="label label-{{ ($timer->structureStatus === '1' ? 'primary' : 'danger') }}">{{ \Seat\Kassie\Calendar\Models\Timers::$structureStatus[$timer->structureStatus] }}</label>
             </td>
             <td style="{{ $style }}" width="20%">
-                <div class="timer" data-date="{{ Carbon\Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String() }}"></div>
+                <div class="timer" style="height: 50px;" data-date="{{ Carbon\Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String() }}"></div>
             </td>
             <td style="{{ $style }}">
                 <abbr class="moment" data-moment="{{ Carbon\Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String() }}">{{ date('Y-m-d H:i:s e', strtotime($timer->timeExiting)) }}</abbr>

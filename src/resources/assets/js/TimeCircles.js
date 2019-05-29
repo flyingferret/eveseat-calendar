@@ -395,15 +395,15 @@
 
             var textElement = $("<div>");
             textElement.addClass('textDiv_' + key);
-            textElement.css("top", Math.round(0.35 * this.data.attributes.item_size));
+            textElement.css("top", Math.round(0.29 * this.data.attributes.item_size));
             textElement.css("left", Math.round(i++ * this.data.attributes.item_size));
             textElement.css("width", this.data.attributes.item_size);
             textElement.appendTo(this.container);
 
             var headerElement = $("<h4>");
             headerElement.text(this.config.time[key].text); // Options
-            headerElement.css("font-size", Math.round(this.config.text_size * this.data.attributes.item_size));
-            headerElement.css("line-height", Math.round(this.config.text_size * this.data.attributes.item_size) + "px");
+            headerElement.css("font-size", Math.round(2 * this.config.text_size * this.data.attributes.item_size));
+            headerElement.css("line-height", Math.round(2 * this.config.text_size * this.data.attributes.item_size) + "px");
             headerElement.appendTo(textElement);
 
             var numberElement = $("<span>");
@@ -805,9 +805,9 @@
         count_past_zero: true,
         circle_bg_color: "#60686F",
         use_background: true,
-        fg_width: 0.1,
+        fg_width: 0.06,
         bg_width: 1.2,
-        text_size: 0.07,
+        text_size: 0.10,
         total_duration: "Auto",
         direction: "Clockwise",
         use_top_frame: false,
@@ -815,22 +815,22 @@
         time: {
             Days: {
                 show: true,
-                text: "Days",
+                text: "",
                 color: "#FC6"
             },
             Hours: {
                 show: true,
-                text: "Hours",
+                text: "",
                 color: "#9CF"
             },
             Minutes: {
                 show: true,
-                text: "Minutes",
+                text: "",
                 color: "#BFB"
             },
             Seconds: {
                 show: true,
-                text: "Seconds",
+                text: "",
                 color: "#F99"
             }
         }
