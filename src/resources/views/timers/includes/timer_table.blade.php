@@ -36,7 +36,31 @@
         ?>
         <tr class="{{ $class }}" style="{{ $style }}" id="item{{ $id }}" hours="{{ $hours }}">
             <td style="{{ $style }}">
-                <label title="{{ $mapItem->itemID }}" class="label {{ ($mapItem->groupID == \Seat\Kassie\Calendar\Models\Timers::$POCOGroupID ? 'label-primary' : 'label-default') }}" style="padding: .2em .7em .3em;">{{ ($mapItem->groupID == \Seat\Kassie\Calendar\Models\Timers::$POCOGroupID ? 'P' : 'M') }}</label>
+                <label title="{{ $mapItem->itemID }}" class="badge
+                        @switch($mapItem->groupID)
+                            @case(5)
+                                {{'bg-maroon'}}
+                                @break
+                            @case(7)
+                                {{'bg-purple'}}
+                                @break
+                            @case(8)
+                                {{'bg-light'}}
+                                @break
+                        @endswitch
+                " style="padding: .2em .7em .3em;">
+                    @switch($mapItem->groupID)
+                        @case(5)
+                            {{'S'}}
+                            @break
+                        @case(7)
+                            {{'P'}}
+                            @break
+                        @case(8)
+                            {{'M'}}
+                            @break
+                    @endswitch
+                </label>
                 <a href="http://evemaps.dotlan.net/system/{{ $system }}">{{ $mapItem->itemName }}</a>
             </td>
             <td style="{{ $style }}">

@@ -143,7 +143,7 @@ class TimerController extends Controller
     {
         $mapItems = MapDenormalize::where('itemID', '=', $request->term)
             ->orWhere('itemName', 'like', $request->term . '%')
-            ->whereIn('groupID', array('7', '8'))
+            ->whereIn('groupID', array('5', '7', '8'))
             ->where('security', '<', '0.8')
             ->get();
 
