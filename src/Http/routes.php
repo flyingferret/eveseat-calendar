@@ -190,7 +190,8 @@ Route::group([
     });
 
     Route::group([
-        'prefix' => 'timers'
+        'prefix' => 'timers',
+        'middleware' => ['bouncer:calendar.create'],
     ], function(){
 
         Route::get('/', [
