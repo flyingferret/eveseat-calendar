@@ -9,10 +9,10 @@
         }
     },
     "require": {
-        "eveseat/web": "^3.0",
-        "eveseat/eveapi": "^3.0",
-        "eveseat/notifications": "^3.0",
-        "eveseat/services": "^3.0",
+        "eveseat/web": "^4.0",
+        "eveseat/eveapi": "^4.0",
+        "eveseat/notifications": "^4.0",
+        "eveseat/services": "^4.0",
         "itsjavi/bootstrap-colorpicker": "^2.0",
         "s9e/text-formatter": "^1.1"
     },
@@ -22,6 +22,9 @@
     }, {
         "name": "Warlof Tutsimo",
         "email": "loic.leuilliot@gmail.com"
+    }, {
+        "name": "Crypta Eve",
+        "email": "crypta@crypta.tech"
     }],
     "license": "GPL-3.0-or-later",
     "minimum-stability": "alpha",

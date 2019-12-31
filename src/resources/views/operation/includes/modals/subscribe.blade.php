@@ -32,7 +32,7 @@
                                            checked
                                            @endif
                                         >
-                                        {!! img('character', $character->character_id, 64, ['class' => 'img-circle eve-icon small-icon'], false) !!}
+                                        {!! img('characters', 'portrait', $character->character_id, 64, ['class' => 'img-circle eve-icon small-icon'], false) !!}
                                         @if($character->main)
                                         <b>{{ $character->name }}</b>
                                         <span class="text-muted"><i>(main)</i></span>

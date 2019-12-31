@@ -6,7 +6,7 @@ use Illuminate\Console\Scheduling\Schedule;
 use Seat\Kassie\Calendar\Observers\OperationObserver;
 use Seat\Kassie\Calendar\Models\Operation;
 use Seat\Kassie\Calendar\Commands\RemindOperation;
-use Seat\Services\AbstractSeatPlugin;
+use App\Providers\AbstractSeatPlugin;
 
 /**
  * Class CalendarServiceProvider.
@@ -35,10 +35,14 @@ class CalendarServiceProvider extends AbstractSeatPlugin
         $this->mergeConfigFrom(__DIR__ . '/Config/package.sidebar.php', 'package.sidebar');
         $this->mergeConfigFrom(__DIR__ . '/Config/calendar.character.menu.php', 'package.character.menu');
         $this->mergeConfigFrom(__DIR__ . '/Config/calendar.corporation.menu.php', 'package.corporation.menu');
-        $this->mergeConfigFrom(__DIR__ . '/Config/calendar.permissions.php', 'web.permissions');
-        $this->mergeConfigFrom(__DIR__ . '/Config/character.permission.php', 'web.permissions.character');
-        $this->mergeConfigFrom(__DIR__ . '/Config/corporation.permission.php', 'web.permissions.corporation');
+        // $this->mergeConfigFrom(__DIR__ . '/Config/calendar.permissions.php', 'web.permissions');
+        // $this->mergeConfigFrom(__DIR__ . '/Config/character.permission.php', 'web.permissions.character');
+        // $this->mergeConfigFrom(__DIR__ . '/Config/corporation.permission.php', 'web.permissions.corporation');
         $this->mergeConfigFrom(__DIR__ . '/Config/calendar.config.php', 'calendar.config');
+
+        $this->registerPermissions(__DIR__ . '/Config/Permissions/calendar.permissions.php', 'calendar');
+        $this->registerPermissions(__DIR__ . '/Config/Permissions/character.permissions.php', 'character');
+        $this->registerPermissions(__DIR__ . '/Config/Permissions/corporation.permissions.php', 'corporation');
     }
 
     private function addRoutes()

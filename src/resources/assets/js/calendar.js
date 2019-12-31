@@ -1,11 +1,11 @@
 $('#modalCreateOperation').on('show.bs.modal', function(e) {
-    var ROUNDING = 15 * 60 * 1000;
+    var ROUNDING = 1 * 60 * 1000;
     nowRounded = moment.utc();
     nowRounded = moment.utc(Math.ceil((+nowRounded) / ROUNDING) * ROUNDING);
 
     var options = {
         timePicker: true,
-        timePickerIncrement: 15,
+        timePickerIncrement: 1,
         timePicker24Hour: true,
         minDate: moment.utc(),
         startDate: nowRounded,
@@ -30,7 +30,7 @@ $('#modalCreateOperation').on('show.bs.modal', function(e) {
 });
 
 $('#modalCreateOperation').find('input[name="known_duration"]:radio').change(function () {
-    $('#modalCreateOperation').find('.datepicker').toggleClass("hidden");
+    $('#modalCreateOperation').find('.datepicker').toggleClass("d-none");
 });
 
 $('#create_operation_submit').click(function(){
@@ -71,7 +71,7 @@ $('#formCreateOperation').submit(function(e) {
         error: function (response) {
             $('#modalCreateOperation').find('.form-group').removeClass('has-error');
             $('#modalCreateOperation').find('.modal-errors ul').empty();
-            $('#modalCreateOperation').find('.modal-errors').removeClass('hidden');
+            $('#modalCreateOperation').find('.modal-errors').removeClass('d-none');
             $.each(response['responseJSON'], function (index, value) {
                 $('#modalCreateOperation').find('[name="' + index + '"]').closest('div.form-group').addClass('has-error');
                 $('#modalCreateOperation').find('.modal-errors ul').append('<li>' + value + '</li>');
@@ -86,7 +86,7 @@ $('#modalUpdateOperation').on('show.bs.modal', function(e) {
 
     $(e.currentTarget).find('input[name="operation_id"]').val(operation_id);
 
-    var ROUNDING = 15 * 60 * 1000;
+    var ROUNDING = 1 * 60 * 1000;
     nowRounded = moment.utc();
     nowRounded = moment.utc(Math.ceil((+nowRounded) / ROUNDING) * ROUNDING);
 
@@ -119,7 +119,7 @@ $('#modalUpdateOperation').on('show.bs.modal', function(e) {
 
         var options = {
             timePicker: true,
-            timePickerIncrement: 15,
+            timePickerIncrement: 1,
             timePicker24Hour: true,
             minDate: nowRounded,
             startDate: moment.utc(op.start_at),
@@ -136,13 +136,13 @@ $('#modalUpdateOperation').on('show.bs.modal', function(e) {
         if (op.end_at) {
             options.endDate = moment.utc(op.end_at);
             $('#modalUpdateOperation').find('input[name="known_duration"][value="yes"]').prop('checked', true);
-            $('#modalUpdateOperation').find('input[name="time_start"]').closest('div.form-group').addClass('hidden');
-            $('#modalUpdateOperation').find('input[name="time_start_end"]').closest('div.form-group').removeClass('hidden');
+            $('#modalUpdateOperation').find('input[name="time_start"]').closest('div.form-group').addClass('d-none');
+            $('#modalUpdateOperation').find('input[name="time_start_end"]').closest('div.form-group').removeClass('d-none');
         } else {
             options.endDate = moment.utc(op.start_at).clone().add('2', 'h');
             $('#modalUpdateOperation').find('input[name="known_duration"][value="no"]').prop('checked', true);
-            $('#modalUpdateOperation').find('input[name="time_start"]').closest('div.form-group').removeClass('hidden');
-            $('#modalUpdateOperation').find('input[name="time_start_end"]').closest('div.form-group').addClass('hidden');
+            $('#modalUpdateOperation').find('input[name="time_start"]').closest('div.form-group').removeClass('d-none');
+            $('#modalUpdateOperation').find('input[name="time_start_end"]').closest('div.form-group').addClass('d-none');
         }
         $('#modalUpdateOperation').find('input[name="time_start_end"]').daterangepicker(options);
 
@@ -162,7 +162,7 @@ $('#modalUpdateOperation').on('show.bs.modal', function(e) {
 });
 
 $('#modalUpdateOperation').find('input[name="known_duration"]:radio').change(function () {
-    $('#modalUpdateOperation').find('.datepicker').toggleClass("hidden");
+    $('#modalUpdateOperation').find('.datepicker').toggleClass("d-none");
 });
 
 $('#update_operation_submit').click(function(){
@@ -187,7 +187,7 @@ $('#formUpdateOperation').submit(function(e) {
         error: function (response) {
             $('#modalUpdateOperation').find('.form-group').removeClass('has-error');
             $('#modalUpdateOperation').find('.modal-errors ul').empty();
-            $('#modalUpdateOperation').find('.modal-errors').removeClass('hidden');
+            $('#modalUpdateOperation').find('.modal-errors').removeClass('d-none');
             $.each(response['responseJSON'], function (index, value) {
                 $('#modalUpdateOperation').find('[name="' + index + '"]').closest('div.form-group').addClass('has-error');
                 $('#modalUpdateOperation').find('.modal-errors ul').append('<li>' + value + '</li>');
@@ -291,7 +291,7 @@ $('#formAddTimer').submit(function(e) {
         error: function (response) {
             $('#modalAddTimer').find('.form-group').removeClass('has-error');
             $('#modalAddTimer').find('.modal-errors ul').empty();
-            $('#modalAddTimer').find('.modal-errors').removeClass('hidden');
+            $('#modalAddTimer').find('.modal-errors').removeClass('d-none');
             $.each(response['responseJSON'].errors, function (index, value) {
                 $('#modalAddTimer').find('[name="' + index + '"]').closest('div.form-group').addClass('has-error');
                 $('#modalAddTimer').find('.modal-errors ul').append('<li>' + value + '</li>');

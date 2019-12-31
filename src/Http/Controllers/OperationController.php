@@ -48,8 +48,8 @@ class OperationController extends Controller
         $tags = Tag::all()->sortBy('order');
 
         $roles = Role::orderBy('title')->get();
-        $userCharacters = auth()->user()->group->users->sortBy('name');
-        $mainCharacter = auth()->user()->group->main_character;
+        $userCharacters = auth()->user()->characters->sortBy('name');
+        $mainCharacter = auth()->user()->main_character;
 
         if($mainCharacter != null) {
             $mainCharacter->main = true;

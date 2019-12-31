@@ -1,5 +1,5 @@
 <div class="modal fade" role="dialog" id="modalUpdateOperation">
-    <div class="modal-dialog">
+    <div class="modal-dialog w-100">
         <div class="modal-content">
             <div class="modal-header bg-yellow">
                 <h4 class="modal-title">
@@ -8,7 +8,7 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <div class="modal-errors alert alert-danger hidden">
+                <div class="modal-errors alert alert-danger d-none">
                     <ul></ul>
                 </div>
                 <form class="form-horizontal" id="formUpdateOperation">

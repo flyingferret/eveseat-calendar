@@ -74,7 +74,7 @@
                         <?php $label_class = 'danger'; ?>
                         @break
                 @endswitch
-                {!! img('type', $timer->structureType, 64, ['class' => 'img-icon eve-icon medium-icon'],false) !!}
+                {!! img('types', 'icon', $timer->structureType, 64, ['class' => 'img-icon eve-icon medium-icon'],false) !!}
                 <label class="label label-{{ $label_class }}">{{ \Seat\Kassie\Calendar\Models\Timers::$structureTypes[$timer->structureType] }}</label>
             </td>
             <td style="{{ $style }}">
@@ -105,7 +105,7 @@
                     @endif
                 @endif
             </td>
-            <td>{!! img('character', $timer->user->character->character_id ?? 0, 64, ['class' => 'img-icon eve-icon medium-icon'],false) !!} {{ $timer->user->character->name ?? '' }}</td>
+            <td>{!! img('characters', 'portrait', $timer->user->character->character_id ?? 0, 64, ['class' => 'img-icon eve-icon medium-icon'],false) !!} {{ $timer->user->character->name ?? '' }}</td>
             <!-- <td style="{{ $style }}"> {{ $user->character_name }} ({{ $user->alliance_name }}) </td> -->
             <td style="{{ $style }}" class="text-right">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalNotes-{{ $timer->id }}">

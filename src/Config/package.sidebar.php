@@ -4,25 +4,25 @@ return [
     'calendar' => [
         'name'          => 'Fleep Ops',
         'label'         => 'Fleet Ops',
-        'icon'          => 'fa-calendar',
+        'icon'          => 'fas fa-calendar-alt',
         'route_segment' => 'calendar',
         'permission' => 'calendar.view',
         'entries' => [
             [
                 'name'  => 'Operations',
-                'icon'  => 'fa-space-shuttle',
+                'icon'  => 'fas fa-space-shuttle',
                 'route' => 'operation.index',
                 'permission' => 'calendar.view'
             ],
             [
                 'name'  => 'Timer Board',
-                'icon'  => 'fa-clock-o',
+                'icon'  => 'fas fa-clock',
                 'route' => 'timers.index',
                 'permission' => 'calendar.create'
             ],
             [
                 'name'  => 'Settings',
-                'icon'  => 'fa-cog',
+                'icon'  => 'fas fa-cog',
                 'route' => 'setting.index',
                 'permission' => 'calendar.setup'
             ]
