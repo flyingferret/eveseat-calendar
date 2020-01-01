@@ -84,7 +84,7 @@ class AjaxController
     {
         return app('datatables')::of($operations)
             ->editColumn('title', function ($row) {
-                return sprintf('<span>%s</span><span class="pull-right">%s</span>',
+                return sprintf('<span>%s</span><span class="float-right">%s</span>',
                     $row->title, view('calendar::operation.includes.attendees', ['op' => $row]));
             })
             ->editColumn('tags', function ($row) {
