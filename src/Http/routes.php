@@ -191,7 +191,7 @@ Route::group([
 
     Route::group([
         'prefix' => 'timers',
-        'middleware' => ['bouncer:calendar.create'],
+        'middleware' => ['bouncer:calendar.timer_view'],
     ], function(){
 
         Route::get('/', [
@@ -202,6 +202,7 @@ Route::group([
         Route::post('/add', [
             'as' => 'timers.add',
             'uses' => 'TimerController@addTimerAction',
+            'middleware' => 'bouncer:calendar.timer_create'
         ]);
 
         Route::get('/details/{id}', [
@@ -212,16 +213,19 @@ Route::group([
         Route::get('/delete/{id}', [
             'as' => 'timers.delete_timer',
             'uses' => 'TimerController@listAllTimersView',
+            'middleware' => 'bouncer:calendar.timer_create'
         ]);
 
         Route::get('/win-timer/{id}', [
             'as' => 'timers.win_timer',
             'uses' => 'TimerController@listAllTimersView',
+            'middleware' => 'bouncer:calendar.timer_create'
         ]);
 
         Route::get('/fail-timer/{id}', [
             'as' => 'timers.fail_timer',
             'uses' => 'TimerController@listAllTimersView',
+            'middleware' => 'bouncer:calendar.timer_create'
         ]);
 
         Route::get('/search-map', [

@@ -18,7 +18,7 @@ return [
                 'name'  => 'Timer Board',
                 'icon'  => 'fas fa-clock',
                 'route' => 'timers.index',
-                'permission' => 'calendar.create'
+                'permission' => 'calendar.timer_view'
             ],
             [
                 'name'  => 'Settings',

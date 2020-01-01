@@ -2,12 +2,20 @@
 
 return [
     'view' => [
-        'label' => 'View',
+        'label' => 'Operations View',
         'description' => 'View the operations calendar',
     ],
+    'timer_view' => [
+        'label' => 'Timer Board View',
+        'description' => 'View the timer board',
+    ],
     'create' => [
-        'label' => 'Create',
-        'description' => 'Create an operation / timer',
+        'label' => 'Operation Create',
+        'description' => 'Create an operation',
+    ],
+    'timer_create' => [
+        'label' => 'Timer Create',
+        'description' => 'Create a timer',
     ],
     'setup' => [
         'label' => 'Setup',
