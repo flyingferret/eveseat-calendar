@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -16,16 +15,7 @@ class CreateCalendarTables extends Migration
     {
         Schema::create('calendar_operations', function (Blueprint $table) {
             $table->increments('id');
-
-            // We need to check for a what type of user column we have... If done as a fresh install we will have bigint(20), already migrated installs will get unsignedInt(10)
-            $type = DB::connection()->getDoctrineColumn('users', 'id')->getType()->getName();
-            if ($type=="bigint"){
-                //This is v3
-                $table->bigInteger('user_id');
-            } else {
-                //This is v4
-                $table->unsignedInteger('user_id');
-            }
+            $table->bigInteger('user_id');
 
             $table->string('title');
             $table->timestamp('start_at')->nullable();
@@ -39,28 +29,21 @@ class CreateCalendarTables extends Migration
             $table->boolean('is_cancelled')->default(false);
             $table->nullableTimestamps();
 
-            // $table->foreign('user_id')
-            //     ->references('id')
-            //     ->on('users')
-            //     ->onDelete('cascade');
-            // $table->foreign('fc_character_id')
-            //     ->references('character_id')
-            //     ->on('character_infos')
-            //     ->onDelete('cascade');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->foreign('fc_character_id')
+                ->references('character_id')
+                ->on('character_infos')
+                ->onDelete('cascade');
         });
 
         Schema::create('calendar_attendees', function (Blueprint $table) {
             $table->increments('id');
 
             $table->integer('operation_id')->unsigned();
-            $type = DB::connection()->getDoctrineColumn('users', 'id')->getType()->getName();
-            if ($type=="bigint"){
-                //This is v3
-                $table->bigInteger('user_id');
-            } else {
-                //This is v4
-                $table->unsignedInteger('user_id');
-            }
+            $table->bigInteger('user_id');
             $table->bigInteger('character_id');
             $table->enum('status', ['yes', 'no', 'maybe']);
             $table->string('comment')->nullable();
@@ -74,10 +57,10 @@ class CreateCalendarTables extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-            // $table->foreign('character_id')
-            //     ->references('character_id')
-            //     ->on('character_infos')
-            //     ->onDelete('cascade');
+            $table->foreign('character_id')
+                ->references('character_id')
+                ->on('character_infos')
+                ->onDelete('cascade');
         });
 
         Schema::create('calendar_settings', function (Blueprint $table) {

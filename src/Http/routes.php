@@ -9,7 +9,7 @@ Route::group([
     Route::get('/{character_id}/paps', [
         'as' => 'character.view.paps',
         'uses' => 'CharacterController@paps',
-        'middleware' => 'characterbouncer:kassie_calendar_paps',
+        'middleware' => 'can:kassie_calendar_paps',
     ]);
 
 });
@@ -23,26 +23,26 @@ Route::group([
     Route::get('/{corporation_id}/paps', [
         'as' => 'corporation.view.paps',
         'uses' => 'CorporationController@getPaps',
-        'middleware' => 'corporationbouncer:kassie_calendar_paps',
+        'middleware' => 'can:kassie_calendar_paps',
     ]);
 
     Route::get('/{corporation_id}/paps/json/year', [
         'as' => 'corporation.ajax.paps.year',
         'uses' => 'CorporationController@getYearPapsStats',
-        'middleware' => 'corporationbouncer:kassie_calendar_paps',
+        'middleware' => 'can:kassie_calendar_paps',
     ]);
 
     Route::get('/{corporation_id}/paps/json/stacked', [
         'as' => 'corporation.ajax.paps.stacked',
         'uses' => 'CorporationController@getMonthlyStackedPapsStats',
-        'middleware' => 'corporationbouncer:kassie_calendar_paps',
+        'middleware' => 'can:kassie_calendar_paps',
     ]);
 
 });
 
 Route::group([
     'namespace' => 'Seat\Kassie\Calendar\Http\Controllers',
-    'middleware' => ['web', 'auth', 'bouncer:calendar.view'],
+    'middleware' => ['web', 'auth', 'can:calendar.view'],
     'prefix' => 'calendar'
 ], function () {
 
@@ -77,13 +77,14 @@ Route::group([
 
         Route::get('/', [
             'as' => 'operation.index',
-            'uses' => 'OperationController@index'
+            'uses' => 'OperationController@index',
+            'middleware' => 'can:calendar.view'
         ]);
 
         Route::post('/', [
             'as' => 'operation.store',
             'uses' => 'OperationController@store',
-            'middleware' => 'bouncer:calendar.create'
+            'middleware' => 'can:calendar.create'
         ]);
 
         Route::post('update', [
@@ -129,7 +130,7 @@ Route::group([
 
     Route::group([
         'prefix' => 'setting',
-        'middleware' => 'bouncer:calendar.setup'
+        'middleware' => 'can:calendar.setup'
     ], function() {
 
         Route::get('/', [
@@ -154,8 +155,8 @@ Route::group([
         ], function() {
 
             Route::post('create', [
-            'as' => 'setting.tag.create',
-            'uses' => 'TagController@store'
+                'as' => 'setting.tag.create',
+                'uses' => 'TagController@store'
             ]);
 
             Route::post('delete', [
@@ -166,7 +167,7 @@ Route::group([
             Route::get('show/{id}', [
                 'as' => 'tags.show',
                 'uses' => 'TagController@get',
-                'middleware' => 'bouncer:calendar.setup',
+                'middleware' => 'can:calendar.setup',
             ]);
 
             Route::post('update', [
@@ -191,7 +192,7 @@ Route::group([
 
     Route::group([
         'prefix' => 'timers',
-        'middleware' => ['bouncer:calendar.timer_view'],
+        'middleware' => ['can:calendar.create'],
     ], function(){
 
         Route::get('/', [
@@ -202,7 +203,6 @@ Route::group([
         Route::post('/add', [
             'as' => 'timers.add',
             'uses' => 'TimerController@addTimerAction',
-            'middleware' => 'bouncer:calendar.timer_create'
         ]);
 
         Route::get('/details/{id}', [
@@ -213,19 +213,16 @@ Route::group([
         Route::get('/delete/{id}', [
             'as' => 'timers.delete_timer',
             'uses' => 'TimerController@listAllTimersView',
-            'middleware' => 'bouncer:calendar.timer_create'
         ]);
 
         Route::get('/win-timer/{id}', [
             'as' => 'timers.win_timer',
             'uses' => 'TimerController@listAllTimersView',
-            'middleware' => 'bouncer:calendar.timer_create'
         ]);
 
         Route::get('/fail-timer/{id}', [
             'as' => 'timers.fail_timer',
             'uses' => 'TimerController@listAllTimersView',
-            'middleware' => 'bouncer:calendar.timer_create'
         ]);
 
         Route::get('/search-map', [

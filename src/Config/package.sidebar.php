@@ -2,26 +2,22 @@
 
 return [
     'calendar' => [
-        'name'          => 'Fleep Ops',
-        'label'         => 'Fleet Ops',
+        'name'          => 'calendar',
+        'label'         => 'calendar::seat.plugin_name',
         'icon'          => 'fas fa-calendar-alt',
         'route_segment' => 'calendar',
         'permission' => 'calendar.view',
         'entries' => [
             [
                 'name'  => 'Operations',
-                'icon'  => 'fas fa-space-shuttle',
+                'label' => 'calendar::seat.operations',
+                'icon'  => 'fas fa-calendar-day',
                 'route' => 'operation.index',
                 'permission' => 'calendar.view'
             ],
             [
-                'name'  => 'Timer Board',
-                'icon'  => 'fas fa-clock',
-                'route' => 'timers.index',
-                'permission' => 'calendar.timer_view'
-            ],
-            [
                 'name'  => 'Settings',
+                'label' => 'calendar::seat.settings',
                 'icon'  => 'fas fa-cog',
                 'route' => 'setting.index',
                 'permission' => 'calendar.setup'
